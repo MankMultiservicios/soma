@@ -18,6 +18,7 @@ body {
   padding: 0;
   background: #0f2b33;
   color: #e8d7c5;
+  overflow-x: auto;
 }
 
 /* HEADER */
@@ -213,7 +214,7 @@ nav a:hover::after {
   nav ul {
     display: none;
     position: absolute;
-    right: 60px;
+    left: 1rem;
     top: 100%;
     background: #0f2b33;
     padding: 20px;
@@ -252,21 +253,23 @@ nav a:hover::after {
   position: relative;
 }
 
+.hero-desktop {
+  display: block;
+}
+.hero-mobile {
+  display: none;
+}
+
 .hero-content {
   display: flex;
   flex-direction: column;
-
   align-items: flex-start;
   text-align: left;
-
   gap: 20px;
-
   background: rgba(29, 29, 29, 0.5);
   padding: 40px 60px;
   border-radius: 16px;
-
   backdrop-filter: blur(6px);
-
   max-width: 600px;
 }
 
@@ -286,10 +289,7 @@ nav a:hover::after {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-
   padding-left: 80px;
-
-  backdrop-filter: none;
 }
 
 .overlay h1 {
@@ -372,17 +372,21 @@ nav a:hover::after {
 }
 
 .btn-outline {
-  position: static;
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
   margin-top: 20px;
+  width: 180px;
+  position: relative;
   font-family: "Josefin Sans", sans-serif;
-  padding: 10px 25px;
-  background: #e8d7c5;
+  padding: 8px 16px;
+  background: #637765;
   border-radius: 25px;
   border: none;
   color: #0f2b33;
   cursor: pointer;
-  transition: 0.5s all ease;
-  font-size: 1.2rem;
+  transition: 0.4s all ease;
+  font-size: 1.4rem;
 }
 
 .btn-outline:hover {
@@ -396,7 +400,6 @@ nav a:hover::after {
   position: relative;
   /* bottom: 20px; */
   /* left: 90px; */
-
   font-family: "Josefin Sans", sans-serif;
   padding: 8px 16px;
   background: #637765;
@@ -422,15 +425,15 @@ nav a:hover::after {
   padding: 80px 50px;
   gap: 60px;
   width: 100%;
-  height: 450px;
-  margin-bottom: 60px;
+  margin-bottom: 10px;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .about img {
   height: 350px;
   width: 100%; 
-  object-fit: scale-down;
+  object-fit: contain;
 }
 
 .about h2 {
@@ -755,32 +758,28 @@ color:#ff3c2f;
 
 .footer {
   display: flex;
+  width: 100%;
   flex-direction: column;
-  max-width: 60%;
+  max-width: 100%;
   margin:0 auto;
   background: #0f2b33;
   gap: 10px;
   font-size: 17px;
-  color: #e8d7c5
+  color: #e8d7c5;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .footer-data {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: start;
-  min-width: 350px;
-  margin: 30px 0px;
-}
-
-.footer-data ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-data li {
-  margin-bottom: 10px;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 30px auto;
+  max-width: 900px;
+  padding: 1rem;
+  gap: 40rem;
+  word-wrap: break-word;
 }
 
 /* .footer-links {
@@ -871,7 +870,7 @@ color:#ff3c2f;
 @media (max-width: 700px) {
   .page-grid {
     grid-template-columns: 1fr;
-    padding: 40px 20px;
+    padding: 0px 20px;
   }
 
   .page-hero {
@@ -884,9 +883,12 @@ color:#ff3c2f;
   flex-direction: column;
   align-items: center;
   background: #0f2b33;
-  padding: 80px 5%;
+  padding: 40px 20px;
   color: #e8d7ce;
-  text-align: center;
+  text-align: center;  
+  margin: 0 auto;           /* 👈 centra horizontalmente */
+  box-sizing: border-box;   /* 👈 asegura que padding no rompa el ancho */
+
 }
 
 .title {
@@ -907,7 +909,8 @@ color:#ff3c2f;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 0 25px #637765;
-  min-width: 1400px;
+  min-width: 1400px;  
+  width: max-content;     /* asegura que no se comprima */
 }
 
 .schedule-table thead {
@@ -962,6 +965,7 @@ color:#ff3c2f;
     box-shadow: 
         0 0 40px #637765,
         0 0 60px #334c44;
+    -webkit-overflow-scrolling: touch;
 }
 
 .schedule-table thead th{
@@ -981,7 +985,6 @@ color:#ff3c2f;
     border-right:1px solid #637765;
 }
 
-
 .note{
     margin-top:25px;
     text-align:center;
@@ -990,13 +993,9 @@ color:#ff3c2f;
 }
 
 @media(max-width:900px){
-    .schedule .title{
-        font-size:28px;
-    }
-
-    .schedule-table{
-        font-size:12px;
-    }
+  .schedule .title{
+    font-size:28px;
+  }
 } 
 
 /* #reservarBtn {
@@ -1123,4 +1122,450 @@ border-radius:8px;
 
 .info-box p{
   line-height:1.6;
+}
+
+.page-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+  gap: 2rem;
+  justify-items: center;
+  margin: 20px;
+}
+
+.page-grid .page-card {
+  width: 100%;
+  max-width: 350px;
+  margin: 0;
+  text-align: left; /* más natural en desktop */
+  padding: 1rem 1rem 8rem;
+}
+
+.page-grid .page-card img {
+  margin-bottom: 1rem;
+  border-radius: 6px;
+}
+
+.page-grid .btn-outline {
+  width: 200px;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+/*MOBILE*/
+
+@media (max-width: 768px) {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    gap: 1.5rem;
+  }
+
+    .logo img {
+    max-width: 180px; /* reduce el ancho del logo */
+    height: auto;
+  }
+
+  /* Título principal */
+  .page-clases-def div h1 { font-size: 1.4rem !important; }
+
+
+  /* Menú hamburguesa a la izquierda */
+  .burger {
+    order: -1;
+    margin-right: auto;
+  }
+
+  /* Login: solo ícono en mobile */
+  .nav-login .nav-user {
+    font-size: 0;
+  }
+  .nav-login .user-icon {
+    margin-left: auto;
+  }
+
+  .nav-login .user-icon svg {
+    width: 35px;
+    height: 35px;
+  }
+
+  .hero-desktop {
+    display: none;
+  }
+  .hero-mobile {
+    display: block;
+  }
+
+  .hero-mobile {
+    height: auto;         /* elimina altura fija */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* empuja contenido hacia abajo */
+    align-items: center;
+    padding: 20px;
+  }
+
+  .overlay {
+    position: static;     /* ya no absoluto */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
+  }
+
+  .hero-content {
+    align-items: center;     /* centra el texto */
+    text-align: center;
+    width: 90%;             /* ocupa todo el ancho disponible */
+    max-width: 90%;          /* deja espacio a los lados */
+    margin-bottom: 20px;     /* espacio con el borde inferior */
+    padding: 20px;           /* menos padding en móvil */
+  }
+
+  .hero h1 {
+    font-size: 32px;         /* tamaño más pequeño en móvil */
+    line-height: 1.2;
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+    padding: 35px 20px;
+    gap: 20px;
+    height: auto;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .about h2, .about h4, .about p {
+    text-align: center;           /* centra el texto */
+  }
+
+  /* contenedor de cards (clases) */
+  .page-class {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  /* Card */
+  .page-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden; /* evita que el texto se salga */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  /* Imagen dentro del card */
+  .page-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+    /* Contenido del card */
+  .card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .card-content h3 {
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+  }
+
+  .card-content p {
+    font-size: 0.95rem;
+    margin: 0.5rem 0 1rem 0;
+  }
+
+  /* Botón */
+  .btn-card {
+    margin-top: 20px;
+    width: 180px;
+    position: relative;
+    font-family: "Josefin Sans", sans-serif;
+    padding: 8px 16px;
+    background: #637765;
+    border-radius: 25px;
+    border: none;
+    color: #0f2b33;
+    cursor: pointer;
+    transition: 0.4s all ease;
+    font-size: 1.4rem;
+  }
+
+  .btn-card:hover {
+    background: #0f2b33;
+    color: #637765;
+    transform: scale(1.05);
+}
+
+
+  /* Contenedor de cards (paquetes) */
+  .page-clases-def {
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .page-clases-def h1 {
+    font-size: 1.8rem;
+  }
+
+  .page-clases-def p {
+    font-size: 1rem;
+  }
+
+  /* TARJETAS DE PAQUETES */
+  .page-paquetes {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  .page-card-pack {
+    background: #f9f9f9;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  .page-card-pack img {
+    width: 100%;
+    display: block;
+    object-fit: cover; /* recorta de forma elegante */
+    object-position: center; /* centra la imagen dentro del card */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+    .card-content {
+    padding: 1rem;
+  }
+
+  /* Cards (entrenador) */
+  .coaches {
+    display: flex;
+    flex-direction: column;   /* apila los cards */
+    align-items: center;      /* centra horizontalmente */
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  .card {
+    width: 90%;            /* ocupa todo el ancho */
+    max-width: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    background: #0f141b;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .card-info {
+    padding: 1.5rem 1rem;
+    text-align: center;
+  }
+
+  .card-info h3 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+  }
+
+  .card-info p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .card-info li {
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+  }
+
+    /* Sección del título */
+  .page-clases-def {
+    padding: 1.5rem 1rem; /* menos padding vertical */
+    text-align: center;
+  }
+
+  .page-clases-def h1 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem; /* menos espacio debajo del título */
+  }
+
+  .page-clases-def p {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem; /* menos espacio debajo del subtítulo */
+  }
+
+  /* Contenedor de los cards */
+  .coaches {
+    margin-top: 0; /* elimina espacio extra arriba */
+    gap: 1.5rem;   /* espacio más pequeño entre cards */
+    padding: 0 1rem;
+  }
+
+    /* Sección de Login */
+  .page-grid .page-card {
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto 2rem auto;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #0f2b33;
+    padding: 1rem 1rem 0.5rem 1rem;
+  }
+
+  .page-grid {
+    display: grid; /* o flex */
+    gap: 1.5rem;     /* separa automáticamente los cards */
+  }
+
+  .page-grid .page-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 0.25rem;
+    border: none;     /* elimina cualquier borde */
+    outline: none;    /* elimina contorno al hacer clic */
+    display: block;   /* evita espacios extra por inline */
+  }
+
+  .page-grid .btn-outline {
+    display: block;
+    margin: 0 auto;
+    max-width: 200px;
+    margin-top: 0;
+    width: 180px;
+    position: relative;
+    font-family: "Josefin Sans", sans-serif;
+    padding: 8px 16px;
+    background: #637765;
+    border-radius: 25px;
+    border: none;
+    color: #0f2b33;
+    cursor: pointer;
+    transition: 0.4s all ease;
+    font-size: 1.4rem;
+  }
+
+  .contact {
+    display: flex;
+    flex-direction: column;   /* coloca título, texto y mapa en columna */
+    align-items: center;      /* centra horizontalmente */
+    text-align: center;       /* centra el texto */
+    padding: 1.5rem 1rem;
+  }
+
+  .footer {
+    max-width: 100%;
+  }
+  .footer-data {
+    flex-direction: column;
+    align-items: center;
+    min-width: auto;
+    margin: 15px 0;
+    display: block;          /* apila los elementos */
+    text-align: center;      /* centra contenido */
+  }
+
+  .footer-map {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .footer-map h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;        /* tipografía más compacta */
+  }
+
+  .footer-map p {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;       /* texto más pequeño en mobile */
+  }
+
+  .footer-map iframe {
+    width: 100%;              /* mapa ocupa todo el ancho */
+    height: 250px;            /* altura más reducida en mobile */
+  }
+}
+
+@media (max-width: 767px) {
+  .about-image {
+    display: none; /* oculta la imagen en mobile */
+  }
+}
+
+@media (min-width: 768px) {
+  .about-image {
+    display: block; /* asegura que se muestre en web */
+  }
+}
+
+@media(max-width:900px){
+
+  .schedule-table{
+    width: max-content;
+    min-width: 900px;
+  }  
+  .schedule-scroll {
+    padding: 10px;      /* menos padding para que no se corte */
+  }
+
+
+  .schedule-table th,
+  .schedule-table td{
+    padding: 8px 6px; /* 👈 celdas más angostas */
+  }
+
+  .table-container{
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding:10px; /* 👈 IMPORTANTE: bajar padding */
+    box-sizing: border-box; /* 👈 CLAVE */
+  }
+
+  .table-container{
+    scroll-snap-type: x mandatory;
+  }
+
+  .schedule-table td,
+  .schedule-table th{
+    scroll-snap-align: start;
+  }
+}
+
+.schedule-scroll {  max-width: 100%;        /* límite: ocupa solo el ancho disponible */
+  overflow-x: auto;       /* activa scroll horizontal */
+  overflow-y: hidden;     /* evita scroll vertical */
+  margin-top: 1rem;
+  border: 1px solid #ccc; /* opcional */
+  -webkit-overflow-scrolling: touch; /* suaviza en móvil */
 }
