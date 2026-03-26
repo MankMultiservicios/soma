@@ -1441,8 +1441,10 @@ border-radius:8px;
   }
 
   .page-grid {
-    display: grid; /* o flex */
-    gap: 1.5rem;     /* separa automáticamente los cards */
+    display: grid;
+    grid-template-columns: 1fr; /* 🔥 UNA SOLA COLUMNA */
+    gap: 1.5rem;
+    padding: 0 20px;
   }
 
   .page-grid .page-card img {
